@@ -1,6 +1,8 @@
 #include<iostream>
 #include<vector>
 #include <algorithm>
+#include <climits>
+
 using namespace std;
 
 // function to check whether there is a pair or not in a array equals to the given target :
@@ -111,11 +113,61 @@ int majority(vector <int> arr){
     return -1;
 }
 
+// rearrange all elements in array by alternate signs
+
+vector <int> rearrange(vector <int> &arr){
+
+    int n = arr.size();
+    vector<int> ans(n,0);
+    int posindex = 0, negindex = 1;
+
+    for(int i=0;i<n;i++){
+
+        if(arr[i]<0){
+            ans[negindex] = arr[i];
+            negindex = negindex + 2;
+        }
+        else{
+            ans[posindex] = arr[i];
+            posindex = posindex + 2;
+        }
+    }
+    return ans;
+
+}
+
+// find the longest consecutive subsequence in an array:
+
+int consecutive(vector <int> &arr){
+
+    sort(arr.begin(), arr.end());
+
+    int n = arr.size();
+    int longest = 1;
+    int countcurr = 0;
+    int lastsmall = INT_MIN;
+
+    for(int i=0;i<n;i++){
+
+        if(arr[i] - 1 == lastsmall){
+            countcurr = countcurr + 1;
+            lastsmall = arr[i];
+        }
+        else if(arr[i] != lastsmall){
+            countcurr = 1;
+            lastsmall = arr[i];
+        }
+        longest = max(longest, countcurr);
+    }
+
+    return longest;
+
+}
 
 int main(){
 
-    vector <int> arr = {2,2,3,3,1,3,3};
-    int n = arr.size();
+    vector <int> arr = {100,200,1,3,2,4};
+    // int n = arr.size();
     // if(twosum(arr,17)){
     //     cout << "pair is present" << endl;
     // }
@@ -141,7 +193,16 @@ int main(){
     // }
 
 
-    int ans = majority(arr);
-    cout << ans << endl;
+    // int ans = majority(arr);
+    // cout << ans << endl;
+
+
+    // vector <int> result = rearrange(arr);
+    // for(int i=0;i<n;i++){
+    //     cout << result[i] << " ";
+    // }
+
+    int ans = consecutive(arr);
+    cout << "length is " << ans << endl;
 
 }
