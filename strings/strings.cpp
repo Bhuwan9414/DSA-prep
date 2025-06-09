@@ -225,3 +225,25 @@
 //     string time;
 
 // }
+
+
+#include<iostream>
+using namespace std;
+
+string rotate(string s, int k){
+
+    k = k%s.length();
+
+    return s.substr(s.length() - k) + s.substr(0, s.length() - k);
+
+}
+
+int main(){
+
+    string s = "abcdef";
+    int k = 2;
+
+    cout << rotate(s, k) << endl;
+
+
+}
