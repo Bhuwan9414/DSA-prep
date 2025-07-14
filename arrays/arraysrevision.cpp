@@ -293,7 +293,7 @@ bool twosum(vector<int> arr, int k)
 {
 
     int n = arr.size();
-    int left = 0, right = n-1;
+    int left = 0, right = n - 1;
 
     while (left < right)
     {
@@ -315,17 +315,85 @@ bool twosum(vector<int> arr, int k)
     return false;
 }
 
+int majorelement(vector<int> arr)
+{
+
+    int n = arr.size();
+    unordered_map<int, int> mpp;
+
+    for (int i = 0; i < n; i++)
+    {
+        mpp[arr[i]]++;
+    }
+
+    int mid = n / 2;
+
+    for (auto pair : mpp)
+    {
+        if (pair.second > mid)
+        {
+            return pair.first;
+        }
+    }
+    return -1;
+}
+
+// find the sum of the subarray that contains the maximum sum in the array:
+
+int sumofsubarr(vector<int> arr)
+{
+
+    int max = INT_MIN;
+    int n = arr.size();
+    int sum = 0;
+
+    // iterrating through each element in the array
+    for (int i = 0; i < n; i++)
+    {
+
+        // adding element in the sum
+        sum += arr[i];
+
+        // if anytime the sum becomes grater than max then do max = sum
+        if (sum > max)
+        {
+            max = sum;
+        }
+
+        // if anytime the sum becomes lesser than 0 reintialize sum with 0
+        if (sum < 0)
+        {
+            sum = 0;
+        }
+    }
+
+    return max;
+}
+
+// best time to buy and sell stock
+
+int stock(vector<int> arr, int n)
+{
+    int minprice = INT_MAX;
+    int maxprofit = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] < minprice)
+        {
+            minprice = arr[i];
+        }
+
+        maxprofit = max(arr[i] - minprice, maxprofit);
+    }
+    return maxprofit;
+}
+
 int main()
 {
-    vector<int> arr = {2, 5, 6, 8, 11}; // You can change input here
-    int k = 14;
+    vector<int> arr = {7,1,5,3,6,4};
+    int n = arr.size();
 
-    if (twosum(arr, k))
-    {
-        cout << "yes pair is present" << endl;
-    }
-    else
-    {
-        cout << "no pair is present" << endl;
-    }
+    int ans = stock(arr, n);
+    cout << "max profit is " << ans << endl;
 }
