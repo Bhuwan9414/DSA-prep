@@ -113,7 +113,6 @@ void reverse(vector<int> &arr, int start, int end)
 
 void rotatearray(vector<int> &arr, int n, int k)
 {
-
     reverse(arr, 0, k - 1);
 
     reverse(arr, k, n - 1);
@@ -389,11 +388,83 @@ int stock(vector<int> arr, int n)
     return maxprofit;
 }
 
+// find the length of longest contigous sequence of either 1s or 0s in an array
+
+int contigous(vector<int> arr, int n)
+{
+
+    int maxcount = INT_MIN;
+    int currentcount = 1;
+
+    for (int i = 0; i < n; i++)
+    {
+
+        if (arr[i] == arr[i + 1])
+        {
+            currentcount += 1;
+        }
+        else
+        {
+            maxcount = max(currentcount, maxcount);
+            currentcount = 1;
+        }
+    }
+
+    return maxcount;
+}
+
+
+// wave sort an array
+
+void wavesort(vector<int> &arr, int n){
+
+    for(int i=0;i<n-1;i+=2){
+
+        swap(arr[i], arr[i+1]);
+
+    }
+
+}
+
+// remove all occurence of element in an array
+
+int occur(vector<int> arr, int n, int k){
+
+    int count = 0;
+    int i=0;
+    while(i<n){
+        if(arr[i] == k){
+            count += 1;
+        }
+        i++;
+    }
+
+    return count;
+
+}
+
+void addnumber(vector<int> &arr, int n){
+
+      for(int i = n-1; i >= 0; i--){
+
+            arr[i] += 1;
+
+            if(arr[i] < 10) return;
+
+            else{
+                arr[i] = 0;
+                arr[i-1] += 1;
+            }
+      }
+}
+
 int main()
 {
-    vector<int> arr = {7,1,5,3,6,4};
+    vector<int> arr = {1,2,9};
     int n = arr.size();
 
-    int ans = stock(arr, n);
-    cout << "max profit is " << ans << endl;
+    addnumber(arr,n);
+    for(int i=0;i<n;i++){
+        cout << arr[i]  << " ";
+    }
 }
