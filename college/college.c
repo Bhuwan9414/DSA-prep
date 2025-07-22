@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include<string.h>
 // int main(){
 // 	char a;
 // 	printf("Enter any char!");
@@ -52,10 +53,21 @@
 
 int main()
 {
-	int i = 040, j = 0x20, k, l, m;
-	k = i | j;
-	l = i & j;
-	m = k ^ l;
-	printf("%d, %d	, %d, %d, %d\n", i, j, k, l, m);
+	// int roll;
+	// char name[100];
+
+	// scanf("%d", &roll);
+	// fflush(stdin);
+	// gets(name);
+	// printf("roll number : %d\n", roll);
+	// printf("name : %s\n", name);
+	// printf("%d", strlen(name));
+
+	char *s = "smile you are learning new things";
+	int n = 11;
+	printf("%s, *s", n, s);
 	return 0;
+
+
+	
 }

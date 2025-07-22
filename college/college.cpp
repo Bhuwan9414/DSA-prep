@@ -322,14 +322,68 @@ int binarysearch(vector<int> arr, int n, int k){
 
 // Problem 6) Write a function rotate(arr[], d, n) that rotates arr[] of size n by d elements.
 
-int rotatebyd(vector<int> arr, int n, int k){
+int reverse(vector<int> &arr, int start, int end){
 
-        
+  
+    
+    while(start<=end){
+        swap(arr[start], arr[end]);
+        start++;
+        end--;
+    }
+
+}
+
+int rotatebyd(vector<int> &arr, int n, int k){
+
+        reverse(arr,0,k-1);
+
+        reverse(arr, k, n-1);
+
+        reverse(arr, 0, n-1);
 
 }
 
 
 // Problem 1) Write a program to print all the LEADERS in the array. An element is leader if it is greater than all the elements to its right side. And the rightmost element is always a leader. 
+
+vector <int> leader(vector<int> arr, int n){
+
+    vector<int> ans;
+    
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+
+            if(arr[i] > arr[j]){
+                ans.push_back(arr[i]);
+            }
+            else{
+                i++;
+            }
+        }
+    }
+
+    return ans;
+
+}
+
+int student(string str){
+
+    int count = 0;
+
+    for(int i=0;i<str.length();i++){
+        if(str[i] == ' '&& str[i+1] != ' '){
+            count++;
+        }
+    }
+
+    return count;
+
+}
+
+    
+
+
 
 
 int main()
@@ -345,16 +399,21 @@ int main()
     // int ans = add(n);
     // cout << ans << endl;
 
-    vector<int> arr = {1,2,4,7,9};
-    int n = arr.size();
-    int k = 9;
+    // vector<int> arr = {1,2,3,4,5,6,7};
+    // int n = arr.size();
+    // int k = 2;
 
-    if (binarysearch(arr, n, k))
-    {
-        cout << "true" << endl;
-    }
-    else
-    {
-        cout << "false" << endl;
-    }
+    // rotatebyd(arr, n, k);
+
+    // for(int i=0;i<n;i++){
+    //     cout << arr[i] << " ";
+    // }
+
+    string str = { "a fox jumps over the lazy    dog"};
+
+    int ans = student(str);
+    cout << ans << endl;
+
+
+   
 }
